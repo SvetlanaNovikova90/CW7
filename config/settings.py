@@ -181,3 +181,6 @@ CELERY_BEAT_SCHEDULE = {
         'schedule': timedelta(days=1),  # Расписание выполнения задачи (например, каждые 10 минут)
     },
 }
+
+TELEGRAM_TOKEN = os.getenv("TELEGRAM_TOKEN")
+TELEGRAM_URL = os.getenv("TELEGRAM_URL")
