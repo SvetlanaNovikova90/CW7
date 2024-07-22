@@ -21,18 +21,18 @@ def message_create(habit_id):
 
     if habit.connection_habit_id:
         message = (
-            f"Привет {name}! Уже ({time})! Давай быстрей({action}),"
+            f"Привет {name}! Уже ({time})! Давай быстрей, пора ({action}),"
             f" в ({place}),"
             f" за это ты можешь: {Habit.objects.get(id=habit.connection_habit_id).action}!"
         )
     elif habit.reward:
         message = (
-            f"Привет {name}! Уже ({time})! Давай быстрей({action}),"
+            f"Привет {name}! Уже ({time})! Давай быстрей, пора({action}),"
             f" в ({place}), за это ты можешь: {habit.reward}!"
         )
     else:
         message = (
-            f"Привет {name}! Уже ({time})! Давай быстрей({action})," f" в ({place})."
+            f"Привет {name}! Уже ({time})! Давай быстрей, пора({action})," f" в ({place})."
         )
 
     return message
