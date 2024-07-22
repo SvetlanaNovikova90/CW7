@@ -13,11 +13,10 @@ app_name = UsersConfig.name
 urlpatterns = [
     path("register/", UserCreateAPIView.as_view(), name="register"),
     path(
-        "login/",
+        "token/",
         TokenObtainPairView.as_view(permission_classes=(AllowAny,)),
         name="login",
     ),
-    path("token/", TokenObtainPairView.as_view(), name="token_obtain_pair"),
     path(
         "token/refresh/",
         TokenRefreshView.as_view(permission_classes=(AllowAny,)),

@@ -4,7 +4,7 @@ from habit.models import Habit
 
 
 def message_create(habit_id):
-    """Создаем сообщение."""
+    """Создание сообщения."""
 
     habit = Habit.objects.get(id=habit_id)
 
@@ -20,15 +20,20 @@ def message_create(habit_id):
     action = habit.action
 
     if habit.connection_habit_id:
-        message = (f"Доброго времени суток {name}! Пришло время({time})! Необходимо выполнить({action}),"
-                   f" в условленном месте({place}),"
-                   f" а за это можешь: {Habit.objects.get(id=habit.connection_habit_id).action}!")
+        message = (
+            f"Привет {name}! Уже ({time})! Давай быстрей({action}),"
+            f" в ({place}),"
+            f" за это ты можешь: {Habit.objects.get(id=habit.connection_habit_id).action}!"
+        )
     elif habit.reward:
-        message = (f"Доброго времени суток {name}! Пришло время({time})! Необходимо выполнить({action}),"
-                   f" в условленном месте({place}), а за это можешь: {habit.reward}!")
+        message = (
+            f"Привет {name}! Уже ({time})! Давай быстрей({action}),"
+            f" в ({place}), за это ты можешь: {habit.reward}!"
+        )
     else:
-        message = (f"Доброго времени суток {name}! Пришло время({time})! Необходимо выполнить({action}),"
-                   f" в условленном месте({place}).")
+        message = (
+            f"Привет {name}! Уже ({time})! Давай быстрей({action})," f" в ({place})."
+        )
 
     return message
 
@@ -42,7 +47,7 @@ def send_tg(chat_id, message):
 
 
 def name_of_user(email):
-    """Формируем имя из почтового адреса. Берем все, что до @."""
+    """Формируем имя из почты."""
     name = ""
     for letter in email:
         if letter != "@":

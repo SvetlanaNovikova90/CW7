@@ -1,8 +1,13 @@
 from rest_framework import serializers
 
 from habit.models import Habit
-from habit.validators import RelatedOrRewardValidator, LeadTimeValidator, CombinationValidator, NiceHabitValidator, \
-    PerformanceFrequencyValidator
+from habit.validators import (
+    RelatedOrRewardValidator,
+    LeadTimeValidator,
+    CombinationValidator,
+    NiceHabitValidator,
+    PerformanceFrequencyValidator,
+)
 
 
 class HabitSerializer(serializers.ModelSerializer):
@@ -19,5 +24,3 @@ class HabitSerializer(serializers.ModelSerializer):
             NiceHabitValidator("habit_is_pleasant", "connection_habit", "reward"),
             PerformanceFrequencyValidator("number_of_executions"),
         ]
-
-
