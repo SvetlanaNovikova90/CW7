@@ -13,7 +13,7 @@ def message_create(habit_id):
 
     time = habit.time
     if habit.place is None:
-        place = ""
+        place = "Назаченом месте"
     else:
         place = habit.place
 

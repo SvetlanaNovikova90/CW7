@@ -6,9 +6,9 @@ from rest_framework.exceptions import ValidationError
 class RelatedOrRewardValidator:
     """Валидация по несовместимости 'связанной привычки' и 'вознаграждения'."""
 
-    def __init__(self, field_1, field_2):
-        self.field_1 = field_1
-        self.field_2 = field_2
+    def __init__(self, connection_habit, reward):
+        self.connection_habit = connection_habit
+        self.reward = reward
 
     def __call__(self, habit):
         if habit.get("connection_habit") and habit.get("reward"):
@@ -22,8 +22,8 @@ class LeadTimeValidator:
 
     duration_time = timedelta(seconds=120)
 
-    def __init__(self, field_1):
-        self.field_1 = field_1
+    def __init__(self, duration):
+        self.duration = duration
 
     def __call__(self, habit):
         if habit.get("duration") and habit.get("duration") > 120:
@@ -33,9 +33,9 @@ class LeadTimeValidator:
 class CombinationValidator:
     """Валидация попадания в 'связанные привычки' только 'приятных привычек'."""
 
-    def __init__(self, field_1, field_2):
-        self.field_1 = field_1
-        self.field_2 = field_2
+    def __init__(self, connection_habit, habit_is_pleasant):
+        self.habit_is_pleasant = habit_is_pleasant
+        self.connection_habit = connection_habit
 
     def __call__(self, habit):
         if habit.get("connection_habit"):
@@ -46,10 +46,10 @@ class CombinationValidator:
 class NiceHabitValidator:
     """Валидация по отсутствию у 'приятной привычки' 'связанной привычки' или 'вознаграждения'."""
 
-    def __init__(self, field_1, field_2, field_3):
-        self.field_1 = field_1
-        self.field_2 = field_2
-        self.field_3 = field_3
+    def __init__(self, habit_is_pleasant, connection_habit, reward):
+        self.habit_is_pleasant = habit_is_pleasant
+        self.connection_habit = connection_habit
+        self.reward = reward
 
     def __call__(self, habit):
         if habit.get("habit_is_pleasant"):

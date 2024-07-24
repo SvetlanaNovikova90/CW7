@@ -13,7 +13,7 @@ def send_message_tg():
     habits = Habit.objects.all()
 
     for habit in habits:
-        if habit.time == current_time:
+        if habit.time >= current_time:
 
             chat_id = habit.creator.chat_id
             if chat_id:
