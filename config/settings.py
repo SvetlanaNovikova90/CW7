@@ -172,9 +172,9 @@ CELERY_BEAT_SCHEDULER = "django_celery_beat.schedulers:DatabaseScheduler"
 
 CELERY_BEAT_SCHEDULE = {
     "check_login": {
-        "task": "users.tasks.check_login",  # Путь к задаче
+        "task": "habit.tasks.send_message_tg",  # Путь к задаче
         "schedule": timedelta(
-            days=1
+            minutes=10
         ),  # Расписание выполнения задачи (например, каждые 10 минут)
     },
 }

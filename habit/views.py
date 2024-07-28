@@ -22,7 +22,7 @@ class HabitListApiView(ListAPIView):
         user = self.request.user
         if user.is_superuser:
             return Habit.objects.all()
-        elif user.is_authenticated:
+        else:
             return Habit.objects.filter(creator=user)
 
 
@@ -55,8 +55,7 @@ class HabitUpdateApiView(UpdateAPIView):
 
     def get_queryset(self):
         user = self.request.user
-        if user.is_authenticated:
-            return Habit.objects.filter(creator=user)
+        return Habit.objects.filter(creator=user)
 
 
 class HabitDestroyApiView(DestroyAPIView):
@@ -65,5 +64,4 @@ class HabitDestroyApiView(DestroyAPIView):
 
     def get_queryset(self):
         user = self.request.user
-        if user.is_authenticated:
-            return Habit.objects.filter(creator=user)
+        return Habit.objects.filter(creator=user)
