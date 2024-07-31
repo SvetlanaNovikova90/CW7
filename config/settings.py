@@ -16,7 +16,7 @@ SECRET_KEY = os.getenv("SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
@@ -76,9 +76,11 @@ WSGI_APPLICATION = "config.wsgi.application"
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql",
-        "NAME": os.getenv("NAME"),
-        "USER": os.getenv("USER"),
-        "PASSWORD": os.getenv("PASSWORD"),
+        "POSTGRES_DB": os.getenv("POSTGRES_DB"),
+        "POSTGRES_USER": os.getenv("POSTGRES_USER"),
+        "POSTGRES_PASSWORD": os.getenv("POSTGRES_PASSWORD"),
+        "POSTGRES_HOST": os.getenv("POSTGRES_HOST"),
+        "POSTGRES_PORT": os.getenv("POSTGRES_PORT"),
     }
 }
 
@@ -163,10 +165,10 @@ CORS_ALLOW_ALL_ORIGINS = True
 CORS_ALLOW_CREDENTIALS = True
 
 # URL-адрес брокера сообщений
-CELERY_BROKER_URL = "redis://localhost:6379"  # Например, Redis, который по умолчанию работает на порту 6379
+CELERY_BROKER_URL = "redis://redis:6379"  # Например, Redis, который по умолчанию работает на порту 6379
 
 # # URL-адрес брокера результатов, также Redis
-CELERY_RESULT_BACKEND = "redis://localhost:6379"
+CELERY_RESULT_BACKEND = "redis://redis:6379"
 #
 CELERY_BEAT_SCHEDULER = "django_celery_beat.schedulers:DatabaseScheduler"
 
